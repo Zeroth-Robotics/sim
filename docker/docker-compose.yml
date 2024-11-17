@@ -1,0 +1,24 @@
+# version: '3.8'
+
+services:
+  zeroth-sim:
+    build:
+      context: .  # Assuming the Dockerfile is in the current directory
+      dockerfile: Dockerfile
+    volumes:
+      - /home/hph/Codes/zeroth-bot:/app # Must have absolute path
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      - DISPLAY=$DISPLAY
+    privileged: true
+    cap_add:
+      - SYS_PTRACE
+    shm_size: 6g
+    tty: true
+    stdin_open: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+              count: all
