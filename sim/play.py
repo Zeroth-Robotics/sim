@@ -144,11 +144,7 @@ def play(args: argparse.Namespace) -> None:
         video = cv2.VideoWriter(dir, fourcc, 50.0, (1920, 1080))
 
     cmd_manager = CommandManager(
-        num_envs=env_cfg.env.num_envs,
-        mode=CMD_MODE,
-        default_cmd=DEFAULT_COMMAND,
-        device=env.device,
-        env_cfg=env_cfg
+        num_envs=env_cfg.env.num_envs, mode=CMD_MODE, default_cmd=DEFAULT_COMMAND, device=env.device, env_cfg=env_cfg
     )
 
     for t in tqdm(range(stop_state_log)):
